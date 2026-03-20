@@ -258,32 +258,18 @@
   </header>
 
   <main>
-
-    <div class="slider-wrapper">
-      <div class="section-title">Before &amp; After — Drag to Compare</div>
-      <p class="slider-description">Drag the slider to compare median time on market in 2024 versus 2025. The broad shift toward shorter times on market is visible across nearly all regions.</p>
-
-      <div class="slider-container" id="slider">
-        <!-- Base: 2025 (shown on right) -->
-        <img src="TOM_2025.png" alt="Median Time on Market 2025" />
-
-        <!-- Overlay: 2024 (shown on left, clipped) -->
-        <div class="img-after" id="afterPane">
-          <img src="tom_2024.png" alt="Median Time on Market 2024" />
-        </div>
-
-        <div class="slider-line" id="sliderLine"></div>
-        <div class="slider-handle" id="sliderHandle">
-          <div class="arrow-left"></div>
-          <div class="arrow-right"></div>
-        </div>
-      </div>
-
-      <div class="slider-labels">
-        <span>2024</span>
-        <span>2025</span>
-      </div>
+<div class="map-single" style="margin-bottom: 64px;">
+  <div class="section-title">Median Time on Market — 2024 vs 2025</div>
+  <p class="slider-description" style="margin-bottom: 24px;">Comparing the two years shows a broad-based shift toward shorter times on market across nearly all districts. The dominant colour range moves from 15–25 weeks in 2024 to 10–15 weeks in 2025, with the longest market times largely disappearing.</p>
+  <div style="display: flex; gap: 16px; max-width: 780px; margin: 0 auto;">
+    <div style="flex: 1;">
+      <img src="tom_2024.png" alt="Median Time on Market 2024" style="width: 100%; border: 1px solid var(--border);" />
     </div>
+    <div style="flex: 1;">
+      <img src="TOM_2025.png" alt="Median Time on Market 2025" style="width: 100%; border: 1px solid var(--border);" />
+    </div>
+  </div>
+</div>
 
     <div class="map-single">
       <div class="section-title">Percent Change, 2024–2025</div>
