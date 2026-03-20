@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time on Market — Germany 2024–2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f2;
+      --text: #1a1a1a;
+      --muted: #6b6560;
+      --accent: #b84a2e;
+      --border: #ddd9d4;
+      --card: #ffffff;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    header {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 72px 24px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    header p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .stat-item .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* SWIPE SLIDER */
+    .slider-wrapper {
+      margin-bottom: 64px;
+    }
+
+    .slider-description {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      user-select: none;
+      cursor: col-resize;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .slider-container img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .slider-container .img-after {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+    }
+
+    .slider-container .img-after img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: auto;
+    }
+
+    .slider-line {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: white;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .slider-handle::before,
+    .slider-handle::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+    }
+
+    .arrow-left {
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 7px solid #888;
+    }
+
+    .arrow-right {
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #888;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slider-labels span {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* PERCENT CHANGE MAP */
+    .map-single {
+      margin-bottom: 64px;
+    }
+
+    .map-single img {
+      display: block;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .map-caption {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* METHODOLOGY */
+    .methodology {
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+      margin-top: 16px;
+    }
+
+    .methodology h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .methodology p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      max-width: 620px;
+    }
+
+    footer {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 24px 24px 48px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="label">GIS Portfolio — RegioKontext Internship</div>
+    <h1>Median Time on Market<br>Across German Districts, 2024–2025</h1>
+    <p>This analysis maps district-level differences in time on market for single- and two-family homes between 2024 and 2025, measuring how market turnover shifted across Germany over a one-year period.</p>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value">19.4 → 12.4</div>
+        <div class="stat-label">Median weeks on market</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">−36.5%</div>
+        <div class="stat-label">Decline in median TOM</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">400+</div>
+        <div class="stat-label">Districts analysed</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="slider-wrapper">
+      <div class="section-title">Before &amp; After — Drag to Compare</div>
+      <p class="slider-description">Drag the slider to compare median time on market in 2024 versus 2025. The broad shift toward shorter times on market is visible across nearly all regions.</p>
+
+      <div class="slider-container" id="slider">
+        <!-- Base: 2025 (shown on right) -->
+        <img src="TOM_2025.png" alt="Median Time on Market 2025" />
+
+        <!-- Overlay: 2024 (shown on left, clipped) -->
+        <div class="img-after" id="afterPane">
+          <img src="tom_2024.png" alt="Median Time on Market 2024" />
+        </div>
+
+        <div class="slider-line" id="sliderLine"></div>
+        <div class="slider-handle" id="sliderHandle">
+          <div class="arrow-left"></div>
+          <div class="arrow-right"></div>
+        </div>
+      </div>
+
+      <div class="slider-labels">
+        <span>2024</span>
+        <span>2025</span>
+      </div>
+    </div>
+
+    <div class="map-single">
+      <div class="section-title">Percent Change, 2024–2025</div>
+      <img src="Percent_change_24_25.png" alt="Percent Change in Median Time on Market 2024–2025" />
+      <p class="map-caption">Reductions in time on market are geographically widespread rather than concentrated in a single region, suggesting a broad-based shift in housing market dynamics rather than an isolated effect.</p>
+    </div>
+
+    <div class="methodology">
+      <h2>Methodology</h2>
+      <p>District-level housing market indicators were sourced from Value Marktdaten and joined to administrative boundary data (Kreise) for spatial analysis and visualisation in QGIS. Percent change was calculated relative to the 2024 baseline.</p>
+      <p>As a cross-check, the average of district medians shows a near-identical decline (19.63 → 12.55 weeks), confirming the overall pattern is not driven by outlier districts.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    Data source: Value Marktdaten &nbsp;·&nbsp; Analysis &amp; cartography: Cecilia Hanelt
+  </footer>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const afterPane = document.getElementById('afterPane');
+    const sliderLine = document.getElementById('sliderLine');
+    const sliderHandle = document.getElementById('sliderHandle');
+
+    let isDragging = false;
+    let startPercent = 50;
+
+    function setPosition(percent) {
+      percent = Math.max(0, Math.min(100, percent));
+      afterPane.style.width = percent + '%';
+      sliderLine.style.left = percent + '%';
+      sliderHandle.style.left = percent + '%';
+    }
+
+    setPosition(50);
+
+    function getPercent(e) {
+      const rect = slider.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      return ((clientX - rect.left) / rect.width) * 100;
+    }
+
+    slider.addEventListener('mousedown', (e) => { isDragging = true; setPosition(getPercent(e)); });
+    slider.addEventListener('touchstart', (e) => { isDragging = true; setPosition(getPercent(e)); }, { passive: true });
+    window.addEventListener('mousemove', (e) => { if (isDragging) setPosition(getPercent(e)); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) setPosition(getPercent(e)); }, { passive: true });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('touchend', () => { isDragging = false; });
+  </script>
+
+</body>
+</html>
